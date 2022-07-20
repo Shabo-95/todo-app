@@ -60,26 +60,24 @@ export default function CreateTodos(props) {
   };
 
   return (
-    <div>
-      <form className="w-100 px-5">
-        <div className="input-group">
-          <input
-            type="text"
-            name="todoTitle"
-            placeholder="Create a Todo Item"
-            className="form-control"
-            onChange={handleChange}
-          />
-          <div className="input-group-append">
-            <button
-              onClick={handleSubmit}
-              className="btn btn-outline btn-primary"
-            >
-              Create
-            </button>
-          </div>
+    <form className="w-100 px-5">
+      <div className="input-group">
+        <input
+          type="text"
+          name="todoTitle"
+          placeholder="Create a Todo Item"
+          className="form-control"
+          onChange={handleChange}
+        />
+        <div className="input-group-append">
+          <button
+            onClick={handleSubmit}
+            className="btn btn-outline btn-primary"
+          >
+            Create
+          </button>
         </div>
-      </form>
-    </div>
+      </div>
+    </form>
   );
 }
