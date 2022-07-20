@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import todosApi from "./api/todosApi";
+import CreateTodos from "./components/CreateTodos";
 
 export default function App() {
   const [todos, setTodos] = useState([]);
@@ -8,14 +10,13 @@ export default function App() {
   }, []);
 
   function getTodos() {
-    const apiUrl = "https://localhost:7272/get-all-todos";
+    const apiUrl = todosApi.API_URL_GET_ALL_TODOS;
 
     fetch(apiUrl, {
       method: "GET",
     })
       .then((response) => response.json())
       .then((todosFromServer) => {
-        console.log(todosFromServer);
         setTodos(todosFromServer);
       })
       .catch((error) => {
@@ -30,6 +31,7 @@ export default function App() {
         <div className="col d-flex flex-column justify-content-center align-items-center">
           <h1>ASP.NET & React ToDo App</h1>
         </div>
+        <CreateTodos onTodoCreated={onTodoCreated} />
         {todos.length > 0 && renderTodoItems()}
       </div>
     </div>
@@ -37,11 +39,11 @@ export default function App() {
 
   function renderTodoItems() {
     return (
-      <div className="table-responsive">
+      <div className="table-responsive px-5">
         <table className="table table-hover">
           <thead>
             <tr>
-              <th scope="col">State</th>
+              <th scope="col">Finished</th>
               <th scope="col">Todos</th>
               <th scope="col">Actions</th>
             </tr>
@@ -53,11 +55,12 @@ export default function App() {
                   <input
                     className="form-check-input"
                     type="checkbox"
+                    role="button"
                     defaultChecked={todo.todoIsFinished}
                   />
                 </td>
-                <td scope="row">{todo.todoTitel}</td>
-                <td scope="row">
+                <td>{todo.todoTitel}</td>
+                <td>
                   <button type="button" className="btn btn-danger">
                     Delete
                   </button>
@@ -68,5 +71,15 @@ export default function App() {
         </table>
       </div>
     );
+  }
+
+  function onTodoCreated(createdTodo) {
+    if (createdTodo === null) {
+      return;
+    }
+
+    alert("New todo item is created successfuly !!");
+
+    getTodos();
   }
 }
