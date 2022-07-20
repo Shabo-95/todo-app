@@ -51,9 +51,8 @@ export default function App() {
       todoTitle: todo.todoTitle,
       todoIsFinished: !todo.todoIsFinished, // Reverse the state
     };
-    console.log("todoToUpdate", todoToUpdate);
 
-    /*const apiUrl = todosApi.API_URL_UPDATE_TODO;
+    const apiUrl = todosApi.API_URL_UPDATE_TODO;
 
     fetch(apiUrl, {
       method: "PUT",
@@ -65,12 +64,12 @@ export default function App() {
       .then((response) => response.json())
       .then((responseFromServer) => {
         console.log(responseFromServer);
+        onTodoUpdated();
       })
       .catch((error) => {
         console.log(error);
         alert(error);
       });
-    console.log("todo.todoIsFinished = ", todo.todoIsFinished);*/
   }
 
   return (
@@ -137,9 +136,9 @@ export default function App() {
       return;
     }
 
-    alert("New todo item is created successfuly !!");
+    getTodos(); // Rerender the todo list
 
-    getTodos();
+    alert("New todo item is created successfuly !!");
   }
 
   function onTodoDeleted(deletedTodoID) {
@@ -160,5 +159,11 @@ export default function App() {
     setTodos(todosArrayCopy);
 
     alert("Todo item is deleted successfuly !!");
+  }
+
+  function onTodoUpdated() {
+    getTodos(); // Rerender the todo list
+
+    //alert("Todo item is updated successfuly !!");
   }
 }
