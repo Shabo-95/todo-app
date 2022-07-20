@@ -17,7 +17,7 @@ namespace todo_app_server.Data
                 staticEntries[i - 1] = new Entry
                 {
                     TodoID = i,
-                    TodoTitel = $"Todo Item {i}",
+                    TodoTitle = $"Todo Item {i}",
                     TodoIsFinished = false,
                 };
             }

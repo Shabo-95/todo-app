@@ -2,6 +2,7 @@
 
 namespace todo_app_server.Data
 {
+    //(The "Models" in the MVC Architectural Pattern)
     internal sealed class Entry
     {
         [Key]
@@ -9,7 +10,7 @@ namespace todo_app_server.Data
 
         [Required]
         [MinLength(10)]
-        public string TodoTitel { get; set; } = string.Empty;
+        public string TodoTitle { get; set; } = string.Empty;
 
         [Required]
         public bool TodoIsFinished { get; set; } = false;

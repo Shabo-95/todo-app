@@ -10,7 +10,7 @@ using todo_app_server.Data;
 namespace todo_app_server.Data.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20220719193105_FirstMigration")]
+    [Migration("20220720231716_FirstMigration")]
     partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,7 +27,7 @@ namespace todo_app_server.Data.Migrations
                     b.Property<bool>("TodoIsFinished")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("TodoTitel")
+                    b.Property<string>("TodoTitle")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -40,31 +40,31 @@ namespace todo_app_server.Data.Migrations
                         {
                             TodoID = 1,
                             TodoIsFinished = false,
-                            TodoTitel = "Todo Item 1"
+                            TodoTitle = "Todo Item 1"
                         },
                         new
                         {
                             TodoID = 2,
                             TodoIsFinished = false,
-                            TodoTitel = "Todo Item 2"
+                            TodoTitle = "Todo Item 2"
                         },
                         new
                         {
                             TodoID = 3,
                             TodoIsFinished = false,
-                            TodoTitel = "Todo Item 3"
+                            TodoTitle = "Todo Item 3"
                         },
                         new
                         {
                             TodoID = 4,
                             TodoIsFinished = false,
-                            TodoTitel = "Todo Item 4"
+                            TodoTitle = "Todo Item 4"
                         },
                         new
                         {
                             TodoID = 5,
                             TodoIsFinished = false,
-                            TodoTitel = "Todo Item 5"
+                            TodoTitle = "Todo Item 5"
                         });
                 });
 #pragma warning restore 612, 618

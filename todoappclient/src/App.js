@@ -44,6 +44,35 @@ export default function App() {
       });
   }
 
+  // Update a todo item
+  function updateTodo(todo) {
+    const todoToUpdate = {
+      todoID: todo.todoID,
+      todoTitle: todo.todoTitle,
+      todoIsFinished: !todo.todoIsFinished, // Reverse the state
+    };
+    console.log("todoToUpdate", todoToUpdate);
+
+    /*const apiUrl = todosApi.API_URL_UPDATE_TODO;
+
+    fetch(apiUrl, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(todoToUpdate),
+    })
+      .then((response) => response.json())
+      .then((responseFromServer) => {
+        console.log(responseFromServer);
+      })
+      .catch((error) => {
+        console.log(error);
+        alert(error);
+      });
+    console.log("todo.todoIsFinished = ", todo.todoIsFinished);*/
+  }
+
   return (
     <div className="container">
       <div className="row min-vh-100">
@@ -69,16 +98,22 @@ export default function App() {
           </thead>
           <tbody>
             {todos.map((todo) => (
-              <tr key={todo.todoID}>
+              <tr
+                key={todo.todoID}
+                className={todo.todoIsFinished ? "table-success" : ""}
+              >
                 <td>
                   <input
                     className="form-check-input"
                     type="checkbox"
                     role="button"
                     defaultChecked={todo.todoIsFinished}
+                    onChange={() => {
+                      updateTodo(todo);
+                    }}
                   />
                 </td>
-                <td>{todo.todoTitel}</td>
+                <td>{todo.todoTitle}</td>
                 <td>
                   <button
                     className="btn btn-danger"

@@ -20,7 +20,7 @@ export default function CreateTodos(props) {
     // Validating the form (the new todo item)
 
     // Check if the field is Empty
-    if (formData.todoTitle === "" || null) {
+    if (formData.todoTitle.trim() === "" || null) {
       alert("The field can't be Empty !!!!");
       return;
     }
@@ -32,8 +32,8 @@ export default function CreateTodos(props) {
     // if everything is OK then...
     const todoToCreate = {
       todoID: 0, // The backend will handle this and change it to the right number
-      todoTitel: formData.todoTitle,
-      todoIsFinished: false,
+      todoTitle: formData.todoTitle,
+      todoIsFinished: true,
     };
 
     console.log("todoToCreate from CreateTodos.js", todoToCreate);
