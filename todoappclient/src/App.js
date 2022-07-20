@@ -125,7 +125,5 @@ export default function App() {
     setTodos(todosArrayCopy);
 
     alert("Todo item is deleted successfuly !!");
-
-    //getTodos();
   }
 }

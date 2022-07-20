@@ -25,7 +25,7 @@ export default function CreateTodos(props) {
       return;
     }
     // Check if the field has more than 10 Characters (and numbers)
-    if (!formData.todoTitle.match(/^([a-zA-Z0-9]{11,})$/)) {
+    if (!formData.todoTitle.match(/^([a-zA-Z0-9\s*]{11,})$/)) {
       alert("Please enter more than 10 characters in the field !!!!");
       return;
     }
