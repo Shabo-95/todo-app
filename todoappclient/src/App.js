@@ -9,6 +9,7 @@ export default function App() {
     getTodos();
   }, []);
 
+  // Get all todos
   function getTodos() {
     const apiUrl = todosApi.API_URL_GET_ALL_TODOS;
 
@@ -18,6 +19,24 @@ export default function App() {
       .then((response) => response.json())
       .then((todosFromServer) => {
         setTodos(todosFromServer);
+      })
+      .catch((error) => {
+        console.log(error);
+        alert(error);
+      });
+  }
+
+  // Delete todo by id
+  function deleteTodo(todoID) {
+    const apiUrl = `${todosApi.API_URL_DELETE_TODO_BY_ID}/${todoID}`;
+
+    fetch(apiUrl, {
+      method: "DELETE",
+    })
+      .then((response) => response.json())
+      .then((responseFromServer) => {
+        console.log(responseFromServer);
+        onTodoDeleted(todoID);
       })
       .catch((error) => {
         console.log(error);
@@ -61,7 +80,12 @@ export default function App() {
                 </td>
                 <td>{todo.todoTitel}</td>
                 <td>
-                  <button type="button" className="btn btn-danger">
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => {
+                      deleteTodo(todo.todoID);
+                    }}
+                  >
                     Delete
                   </button>
                 </td>
@@ -81,5 +105,27 @@ export default function App() {
     alert("New todo item is created successfuly !!");
 
     getTodos();
+  }
+
+  function onTodoDeleted(deletedTodoID) {
+    let todosArrayCopy = [...todos];
+
+    const index = todosArrayCopy.findIndex(
+      (todosArrayCopyItem, currentIndex) => {
+        if (todosArrayCopyItem.todoID === deletedTodoID) {
+          return true;
+        }
+      }
+    );
+
+    if (index !== -1) {
+      todosArrayCopy.splice(index, 1);
+    }
+
+    setTodos(todosArrayCopy);
+
+    alert("Todo item is deleted successfuly !!");
+
+    //getTodos();
   }
 }
