@@ -3,6 +3,12 @@ import todosApi from "./api/todosApi";
 import CreateTodos from "./components/CreateTodos";
 
 export default function App() {
+  var day = new Date().getDate(); //To get the Current Date
+  var month = new Date().getMonth() + 1; //To get the Current Month
+  var year = new Date().getFullYear(); //To get the Current Year
+
+  var currentDate = year + "-" + month + "-" + day; // Today's date
+
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
@@ -49,6 +55,7 @@ export default function App() {
     const todoToUpdate = {
       todoID: todo.todoID,
       todoTitle: todo.todoTitle,
+      todoDeadline: todo.todoDeadline,
       todoIsFinished: !todo.todoIsFinished, // Reverse the state
     };
 
@@ -100,7 +107,13 @@ export default function App() {
             {todos.map((todo) => (
               <tr
                 key={todo.todoID}
-                className={todo.todoIsFinished ? "table-success" : ""}
+                className={
+                  todo.todoIsFinished
+                    ? "table-success"
+                    : new Date(todo.todoDeadline) < new Date(currentDate)
+                    ? "table-danger"
+                    : ""
+                }
               >
                 <td>
                   <input
@@ -138,9 +151,9 @@ export default function App() {
       return;
     }
 
-    getTodos(); // Rerender the todo list
-
     alert("New todo item is created successfuly !!");
+
+    getTodos(); // Rerender the todo list
   }
 
   function onTodoDeleted(deletedTodoID) {

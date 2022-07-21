@@ -4,6 +4,7 @@ import todosApi from "../api/todosApi";
 export default function CreateTodos(props) {
   const initialFormData = Object.freeze({
     todoTitle: "",
+    todoDeadline: "",
   });
   const [formData, setFormData] = useState(initialFormData);
 
@@ -29,15 +30,18 @@ export default function CreateTodos(props) {
       alert("Please enter more than 10 characters in the field !!!!");
       return;
     }
+    // Check if the date is picked
+    if (formData.todoDeadline === "" || null) {
+      alert("Please pick a date !!!!");
+      return;
+    }
     // if everything is OK then...
     const todoToCreate = {
       todoID: 0, // The backend will handle this and change it to the right number
       todoTitle: formData.todoTitle,
       todoDeadline: formData.todoDeadline,
-      todoIsFinished: true,
+      todoIsFinished: false,
     };
-
-    console.log("todoToCreate from CreateTodos.js", todoToCreate);
 
     const apiUrl = todosApi.API_URL_CREATE_TODO;
 
@@ -70,7 +74,12 @@ export default function CreateTodos(props) {
           className="form-control"
           onChange={handleChange}
         />
-        <input type="date" name="todoDeadline" onChange={handleChange} />
+        <input
+          type="date"
+          name="todoDeadline"
+          id="dateId"
+          onChange={handleChange}
+        />
         <div className="input-group-append">
           <button
             onClick={handleSubmit}

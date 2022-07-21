@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -16,7 +15,7 @@ namespace todo_app_server.Data.Migrations
                     TodoID = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     TodoTitle = table.Column<string>(type: "TEXT", nullable: false),
-                    TodoDeadline = table.Column<DateOnly>(type: "TEXT", nullable: false),
+                    TodoDeadline = table.Column<string>(type: "TEXT", nullable: false),
                     TodoIsFinished = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
@@ -27,27 +26,27 @@ namespace todo_app_server.Data.Migrations
             migrationBuilder.InsertData(
                 table: "Entries",
                 columns: new[] { "TodoID", "TodoDeadline", "TodoIsFinished", "TodoTitle" },
-                values: new object[] { 1, new DateOnly(2022, 7, 21), false, "Todo Item 1" });
+                values: new object[] { 1, "2022-07-21", false, "Todo Item 1" });
 
             migrationBuilder.InsertData(
                 table: "Entries",
                 columns: new[] { "TodoID", "TodoDeadline", "TodoIsFinished", "TodoTitle" },
-                values: new object[] { 2, new DateOnly(2022, 7, 21), false, "Todo Item 2" });
+                values: new object[] { 2, "2022-07-21", false, "Todo Item 2" });
 
             migrationBuilder.InsertData(
                 table: "Entries",
                 columns: new[] { "TodoID", "TodoDeadline", "TodoIsFinished", "TodoTitle" },
-                values: new object[] { 3, new DateOnly(2022, 7, 21), false, "Todo Item 3" });
+                values: new object[] { 3, "2022-07-21", false, "Todo Item 3" });
 
             migrationBuilder.InsertData(
                 table: "Entries",
                 columns: new[] { "TodoID", "TodoDeadline", "TodoIsFinished", "TodoTitle" },
-                values: new object[] { 4, new DateOnly(2022, 7, 21), false, "Todo Item 4" });
+                values: new object[] { 4, "2022-07-21", false, "Todo Item 4" });
 
             migrationBuilder.InsertData(
                 table: "Entries",
                 columns: new[] { "TodoID", "TodoDeadline", "TodoIsFinished", "TodoTitle" },
-                values: new object[] { 5, new DateOnly(2022, 7, 21), false, "Todo Item 5" });
+                values: new object[] { 5, "2022-07-21", false, "Todo Item 5" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -13,7 +13,7 @@ namespace todo_app_server.Data
         public string TodoTitle { get; set; } = string.Empty;
 
         [Required]
-        public DateOnly TodoDeadline { get; set; }
+        public string TodoDeadline { get; set; } = string.Empty;
 
         [Required]
         public bool TodoIsFinished { get; set; } = false;
