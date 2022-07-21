@@ -33,6 +33,7 @@ export default function CreateTodos(props) {
     const todoToCreate = {
       todoID: 0, // The backend will handle this and change it to the right number
       todoTitle: formData.todoTitle,
+      todoDeadline: formData.todoDeadline,
       todoIsFinished: true,
     };
 
@@ -65,10 +66,11 @@ export default function CreateTodos(props) {
         <input
           type="text"
           name="todoTitle"
-          placeholder="Create a Todo Item"
+          placeholder="Create a Todo Item & Set a Deadline Date"
           className="form-control"
           onChange={handleChange}
         />
+        <input type="date" name="todoDeadline" onChange={handleChange} />
         <div className="input-group-append">
           <button
             onClick={handleSubmit}

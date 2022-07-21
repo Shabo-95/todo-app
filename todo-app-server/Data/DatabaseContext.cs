@@ -11,6 +11,7 @@ namespace todo_app_server.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder) 
         {
             Entry[] staticEntries = new Entry[5];
+            DateOnly todaysDate = DateOnly.FromDateTime(DateTime.Now);
 
             for (int i = 1; i<= 5; i++)
             {
@@ -18,6 +19,7 @@ namespace todo_app_server.Data
                 {
                     TodoID = i,
                     TodoTitle = $"Todo Item {i}",
+                    TodoDeadline = todaysDate,
                     TodoIsFinished = false,
                 };
             }

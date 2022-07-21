@@ -9,8 +9,11 @@ namespace todo_app_server.Data
         public int TodoID { get; set; }
 
         [Required]
-        [MinLength(10)]
+        [MinLength(11)]
         public string TodoTitle { get; set; } = string.Empty;
+
+        [Required]
+        public DateOnly TodoDeadline { get; set; }
 
         [Required]
         public bool TodoIsFinished { get; set; } = false;

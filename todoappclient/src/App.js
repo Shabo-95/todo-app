@@ -92,6 +92,7 @@ export default function App() {
             <tr>
               <th scope="col">Finished</th>
               <th scope="col">Todos</th>
+              <th scope="col">Deadline</th>
               <th scope="col">Actions</th>
             </tr>
           </thead>
@@ -113,6 +114,7 @@ export default function App() {
                   />
                 </td>
                 <td>{todo.todoTitle}</td>
+                <td>{todo.todoDeadline}</td>
                 <td>
                   <button
                     className="btn btn-danger"
